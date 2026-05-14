@@ -779,21 +779,26 @@
                 work, or design opportunities.</p>
         </div>
 
-        <div class="container contact-me-container">
+        <form class="container contact-me-container" id="contactForm" novalidate
+            action="https://formsubmit.co/nadeejaamaraweera@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Portfolio inquiry">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="box">
             <div class="contact-me-inputs">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Phone Number">
-                <input type="text" placeholder="Timeline">
+                <input type="text" id="contactName" name="name" placeholder="Name" autocomplete="name" required>
+                <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number" autocomplete="tel" required>
+                <input type="text" id="contactTimeline" name="timeline" placeholder="Timeline" required>
             </div>
             <div class="contact-me-inputs">
-                <input type="text" placeholder="Email">
-                <input type="text" placeholder="Service of interest">
-                <textarea name="" id="" s rows="10" placeholder="Project Details"></textarea>
+                <input type="email" id="contactEmail" name="email" placeholder="Email" autocomplete="email" required>
+                <input type="text" id="contactService" name="service" placeholder="Service of interest" required>
+                <textarea id="contactDetails" name="details" rows="10" placeholder="Project Details" required></textarea>
+                <p class="contact-status" id="contactStatus" aria-live="polite"></p>
                 <div class="contact-button-wrapper">
-                    <button>Send</button>
+                    <button type="submit">Send</button>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 
     <!-- Footer section -->

@@ -54,6 +54,84 @@ assignmentBtn.addEventListener('click', () => {
     projectBtn.classList.remove('active');
 });
 
+// Contact form validation and email draft
+const contactForm = document.getElementById('contactForm');
+const contactStatus = document.getElementById('contactStatus');
+const contactFields = {
+  name: document.getElementById('contactName'),
+  phone: document.getElementById('contactPhone'),
+  timeline: document.getElementById('contactTimeline'),
+  email: document.getElementById('contactEmail'),
+  service: document.getElementById('contactService'),
+  details: document.getElementById('contactDetails')
+};
+
+function setContactStatus(message, type) {
+  if (!contactStatus) {
+    return;
+  }
+
+  contactStatus.textContent = message;
+  contactStatus.dataset.state = type;
+}
+
+function getContactFieldValue(field) {
+  return field ? field.value.trim() : '';
+}
+
+function validateContactForm() {
+  const name = getContactFieldValue(contactFields.name);
+  const phone = getContactFieldValue(contactFields.phone);
+  const timeline = getContactFieldValue(contactFields.timeline);
+  const email = getContactFieldValue(contactFields.email);
+  const service = getContactFieldValue(contactFields.service);
+  const details = getContactFieldValue(contactFields.details);
+
+  if (!name || !phone || !timeline || !email || !service || !details) {
+    setContactStatus('Please fill in all fields before sending.', 'error');
+    return null;
+  }
+
+  if (!contactFields.email.checkValidity()) {
+    setContactStatus('Please enter a valid email address.', 'error');
+    return null;
+  }
+
+  return { name, phone, timeline, email, service, details };
+}
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const contactData = validateContactForm();
+
+    if (!contactData) {
+      return;
+    }
+
+    const formData = new FormData(contactForm);
+    setContactStatus('Sending your message...', 'success');
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+
+      if (!response.ok && response.type !== 'opaque') {
+        throw new Error('Unable to send message at the moment.');
+      }
+
+      contactForm.reset();
+      setContactStatus('Your message was sent successfully.', 'success');
+    } catch (error) {
+      setContactStatus('Message could not be sent. Please try again later.', 'error');
+    }
+  });
+}
+
 // Typing animation for home section
 
 // typing

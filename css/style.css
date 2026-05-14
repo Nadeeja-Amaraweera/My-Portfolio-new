@@ -1743,6 +1743,21 @@ textarea:focus {
     justify-content: flex-end;
 }
 
+.contact-status {
+    min-height: 1.25rem;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #c3c3c3;
+}
+
+.contact-status[data-state="error"] {
+    color: #ff8a75;
+}
+
+.contact-status[data-state="success"] {
+    color: #8be28b;
+}
+
 .contact-me-inputs button {
     background-color: transparent;
     color: #a0a0a0;
