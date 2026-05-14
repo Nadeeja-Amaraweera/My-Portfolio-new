@@ -420,13 +420,13 @@ html {
     white-space: nowrap;
     overflow: hidden;
     /* Agar teks tidak meluap */
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 500;
     line-height: 1.5;
     /* Pastikan line-height tetap ada */
     display: inline-block;
     /* Agar ukuran elemen sesuai dengan teks */
-    min-height: calc(3rem * 1.5);
+    min-height: calc(2.5rem * 1.5);
     /* Menjaga tinggi elemen saat teks belum muncul */
 }
 
